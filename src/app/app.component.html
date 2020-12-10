@@ -1,0 +1,56 @@
+<div>
+  <h3>Upload Excel File</h3>
+  <div class="row">
+      <input type="file" (change)="uploadFile($event)" placeholder="Choose File" accept=".xls,.xlsx,.ods">
+      <button type="button" class="btn btn-info" (click)="upload()" >Upload</button>
+  </div>
+</div>
+    <br />
+    <br />
+    <nz-table #editRowTable nzBordered [nzData]="excelData" *ngIf="submitted">
+      <thead>
+        <tr>
+          <th>Client UID</th>
+          <th>Client Employee Name</th>
+          <th>Email Id</th>
+          <th>UST UID</th>
+          <th>UST Employee Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of editRowTable.data" class="editable-row">
+
+          <td>
+            <div class="editable-cell" [hidden]="editId === data.id" (click)="startEdit(data.id)">
+              {{ data['Client UID'] }}
+            </div>
+            <input [hidden]="editId !== data.id" type="text" nz-input [(ngModel)]="data['Client UID']" (blur)="stopEdit()" />
+          </td>
+          <td>
+            <div class="editable-cell" [hidden]="editId === data.id" (click)="startEdit(data.id)">
+              {{ data['Client Employee name']}}
+            </div>
+            <input [hidden]="editId !== data.id" type="text" nz-input [(ngModel)]="data['Client Employee name']" (blur)="stopEdit()" />
+          </td>
+          <td>
+            <div class="editable-cell" [hidden]="editId === data.id" (click)="startEdit(data.id)">
+              {{ data['Email ID']}}
+            </div>
+            <input [hidden]="editId !== data.id" type="text" nz-input [(ngModel)]="data['Email ID']" (blur)="stopEdit()" />
+          </td>
+          <td>
+            <div class="editable-cell" [hidden]="editId === data.id" (click)="startEdit(data.id)">
+              {{ data['UST UID'] }}
+            </div>
+            <input [hidden]="editId !== data.id" type="text" nz-input [(ngModel)]="data['UST UID']" (blur)="stopEdit()" />
+          </td>
+          <td>
+            <div class="editable-cell" [hidden]="editId === data.id" (click)="startEdit(data.id)">
+              {{ data['UST Employee Name'] }}
+            </div>
+            <input [hidden]="editId !== data.id" type="text" nz-input [(ngModel)]="data['UST Employee Name']" (blur)="stopEdit()" />
+          </td>
+          
+        </tr>
+      </tbody>
+    </nz-table>
